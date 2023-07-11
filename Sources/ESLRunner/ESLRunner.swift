@@ -33,7 +33,8 @@ public struct ESLRunner: ParsableCommand {
         print("pid: \(event.process.audit_token.pid) ppid: \(event.process.ppid)")
         if !noJSON {
             if let json = try? encoder.encode(event.event) {
-                print(String(data: json, encoding: .utf8)!)
+                let theString = String(data: json, encoding: .utf8)
+                print(theString ?? "ERROR - UNABLE TO CONVERT JSON OBJECT TO STRING")
             } else {
                 print(event.event)
             }
